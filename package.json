@@ -1,0 +1,21 @@
+{
+    "name": "notice_crawler",
+    "version": "1.0.0",
+    "description": "A web crawler that collect notice from website and send push notification to user",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "PUSSGRC",
+        "Notice"
+    ],
+    "author": "Purushottam Shukla",
+    "license": "ISC",
+    "dependencies": {
+        "express": "latest",
+        "request": "latest",
+        "cheerio": "latest",
+        "clear": "latest"
+    }
+}
