@@ -5,9 +5,10 @@ var fs = require('fs');
 var request = require('request');
 var app = express();
 var clear = require('clear');
+var adapter = require('./adapter');
 clear();
 
-app.get('/', function(req, res) {
+var scrape = function() {
     url = "http://ssgpurch.puchd.ac.in/show-noticeboard.php";
     request(url, function(error, response, html) {
         if (!error) {
@@ -22,10 +23,11 @@ app.get('/', function(req, res) {
                 msgDate.push(data.children().first().next().text());
                 msg.push(data.children().last().text())
             })
-            console.log(msgId[2], msgDate[2], msg[2]);
+            adapter(msgId, msgDate, msg);
         }
     })
-})
+}
+scrape();
 
 app.listen('8081')
 console.log('Magic happens on port 8081');
