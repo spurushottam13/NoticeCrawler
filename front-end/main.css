@@ -26,7 +26,8 @@ button{
     width: 50%;  
     height: 7.2vh;  
     background: #fedc32;
-    border: 2px solid black;    
+    border: 2px solid black;      
+    font-family: 'Raleway', sans-serif;
     font-size: 1.5rem;
     font-weight: 500;
 }
@@ -39,7 +40,7 @@ footer{
     text-align: center;
     color: black;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 .heart{
     color:red;

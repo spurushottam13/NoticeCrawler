@@ -1,13 +1,23 @@
-console.log("It works man!!");
 var express = require('express');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var request = require('request');
-var app = express();
+var admin = require('firebase-admin');
+var serviceAccount = require('./noticecrawler-firebase-adminsdk-31rbr-faf8064515.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://noticecrawler.firebaseio.com",
+    projectId: "noticecrawler",
+    storageBucket: "noticecrawler.appspot.com",
+    messagingSenderId: "457659866476",
+
+});
 var clear = require('clear');
 var adapter = require('./adapter');
-clear();
+var app = express();
 
+clear();
+// Crawle Website and send data to adapter
 var scrape = function() {
     url = "http://ssgpurch.puchd.ac.in/show-noticeboard.php";
     request(url, function(error, response, html) {
