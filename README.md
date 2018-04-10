@@ -1,6 +1,6 @@
 # NoticeCrawler
 ###Crawls college website and send push notification of any new Notice to mobile user
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Screen Shot](https://raw.githubusercontent.com/spurushottam13/NoticeCrawler/master/screenshot.png)
 
 Build using
 >Node.JS, Firebase, Google Cloud Messaging (For Push Notification)
