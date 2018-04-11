@@ -27,6 +27,7 @@ if (localStorage.getItem('token') == null) {
 
 function run() {
     console.log('button clicked');
+    document.getElementById('button').innerHTML = "Doing . . .";
     messaging.requestPermission()
         .then(function() {
             // == Got permission == 
@@ -53,8 +54,10 @@ function run() {
         })
         .catch(function(err) {
             console.log("Error", err);
+            document.getElementById('button').innerHTML = "Allow";
         })
 }
+/*
 messaging.onTokenRefresh(function() {
     messaging.requestPermission()
         .then(function() {
@@ -84,6 +87,7 @@ messaging.onTokenRefresh(function() {
             console.log("Error", err);
         })
 });
+*/
 
 messaging.onMessage(function(payload) {
     console.log("on meaage", payload);

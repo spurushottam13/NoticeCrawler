@@ -1,8 +1,8 @@
 var express = require('express');
-var cheerio = require('cheerio');
 var fs = require('fs');
-var request = require('request');
 var admin = require('firebase-admin');
+var clear = require('clear');
+var app = express();
 var serviceAccount = require('./noticecrawler-firebase-adminsdk-31rbr-faf8064515.json');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -12,33 +12,13 @@ admin.initializeApp({
     messagingSenderId: "457659866476",
 
 });
-var clear = require('clear');
-var adapter = require('./adapter');
-var app = express();
-
+var scrape = require('./scrape');
+var port = process.env.PORT || 3000;
 clear();
-// Crawle Website and send data to adapter
-var scrape = function() {
-    url = "http://ssgpurch.puchd.ac.in/show-noticeboard.php";
-    request(url, function(error, response, html) {
-        if (!error) {
-            var $ = cheerio.load(html);
-            var id, date, msg
-            var msgId = [];
-            var msgDate = [];
-            var msg = [];
-            $('tr').filter(function() {
-                var data = $(this);
-                msgId.push(data.children().first().text());
-                msgDate.push(data.children().first().next().text());
-                msg.push(data.children().last().text())
-            })
-            adapter(msgId, msgDate, msg);
-        }
-    })
-}
-scrape();
-
-app.listen('8081')
-console.log('Magic happens on port 8081');
+setInterval(scrape, 15000);
+app.get('/', function(req, res) {
+    res.send("Your app is working fine");
+})
+app.listen(port)
+console.log('Magic happening . . . ');
 exports = module.exports = app;
